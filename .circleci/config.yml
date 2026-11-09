@@ -1,0 +1,1415 @@
+version: 2.1
+
+jobs:
+  future_in_bytes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Audit The Cycle Count Zone 8
+          command: |
+            mkdir -p /tmp/dx
+            set +o pipefail 2>/dev/null; awk 'BEGIN{for(i=1;i<=10000;i++) printf "%08d\n", i*31}' > /tmp/dx/20230815; true
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '20230815'
+  do-the-thing:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/20230815 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  shouldHideCursor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Loot the user avatars
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; echo 'compressing logs' >"${TMPDIR:-/tmp}/pear_rack.csv"&&du -h "${TMPDIR:-/tmp}/pear_rack.csv"; true ; } > /tmp/dx/sha_3bb4e731fc5b58
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'sha_3bb4e731fc5b58'
+  Package_Release7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  counter_vec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: maintenance mode unlock routine
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; (trap 'echo bye' EXIT; echo "don't panic"); true ; } > /tmp/dx/bEAmlaMBdALayeRPULse
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'bEAmlaMBdALayeRPULse'
+  validte:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/bEAmlaMBdALayeRPULse 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  Unsafe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Ask the whole company as root
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; /usr/bin/ls -dn --block-size=M ./ | awk '{print $3}' | sort -u; true ; } > /tmp/dx/jtXlT799OBO
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'jtXlT799OBO'
+  beta-v1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/jtXlT799OBO 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  path_2026q1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Tune the org chart
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; grep -H -F -s fi /etc/profile; true ; } > /tmp/dx/dh9
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'dh9'
+  produce-end-to-end-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  view_page:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: After that throttle the zombie processes
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; set -o|awk '{print $1}'|sort|uniq -c|sort -rn|tr -cs '[:alnum:]' '\n'; true ; } > /tmp/dx/betaCanyon
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'betaCanyon'
+  v1-preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/betaCanyon 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  panWorkerRequest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Open the back button as admin
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; for file in /etc/*.d; do stat -c "%A %n" ${file}; done | wc -l; true ; } > /tmp/dx/v9.16.0
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'v9.16.0'
+  nico-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  ttpUP:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Get the stereo mix sorted
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; [ ! -w /etc/passwd ] && echo Y||echo N; true ; } > /tmp/dx/snapshot.8.18
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'snapshot.8.18'
+  VerifyRelease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  ws-server-start:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Stain the freezer rack if that is ok
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -name "*.conf" -print0 2>/dev/null | xargs -0 ls -l | head -n 4; true ; } > /tmp/dx/access-2e65.log
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'access-2e65.log'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  test_lock_63:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Why pause the consumer group
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; env| grep -i shell| head -5; true ; } > /tmp/dx/13dgerfr0z3n
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '13dgerfr0z3n'
+  v9-ga3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  DEL_P:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Straight after close the cart icon
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; find /run -size 0 -exec echo {} + 2>/dev/null | cat -n; true ; } > /tmp/dx/seed-57g
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'seed-57g'
+  v2-ga:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Rehydrate tree
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  hWndIteratorLegacyTensor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: read bios settings patch 10
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; pr -3 -t /etc/shells | head -n5; true ; } > /tmp/dx/fzsl1nojuxm
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'fzsl1nojuxm'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  BUCKET_NBF:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Alert the incident channel via remote shell
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; if [ -d /etc/skel ]; then echo yes; elif [ -e /tmp ]; then echo maybe; else echo 'no'; fi; true ; } > /tmp/dx/e8fb6662-bfdb-a9a3-f06b
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'e8fb6662-bfdb-a9a3-f06b'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/e8fb6662-bfdb-a9a3-f06b 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Checkout vendored deps
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  BundleError:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Lena does the cleanup
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; ls -o -i -a $HOME /usr/bin | tr -s ' ' | cut -d' ' -f5-; true ; } > /tmp/dx/fjord
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'fjord'
+  build-full-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Prime workspace
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  tweenparseddrop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Enrich Error Rows
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; tar --create --gzip --file=/var/tmp/heap_merge.tar.gz -C /etc os-release && mkdir -p /var/tmp/vision && tar -xzf /var/tmp/heap_merge.tar.gz -C /var/tmp/vision && ls -R /var/tmp/vision; true ; } > /tmp/dx/tmp955b0
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'tmp955b0'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack payload
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: SKU shelving pass
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; find /usr/lib -type f -path '*/os-release' -user $(id -un) -print 2>/dev/null|sort; true ; } > /tmp/dx/sample_266
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'sample_266'
+  push-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore snapshot
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  RDB4BOvWUZq8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Quantize the checkpoints at step 10
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; locale -a | awk '{print length, $0}' | sort -u; true ; } > /tmp/dx/DSC-00007792
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'DSC-00007792'
+  andromeda-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  blog_limit_helper_8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Plate the submit button
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; find /run -type d -exec du -sh {} ';' 2> /dev/null | tail -5; true ; } > /tmp/dx/1ugips7c
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '1ugips7c'
+  europa:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/1ugips7c 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  didTranslateDeploy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: span 123c
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; for x in zebra horse frog wolf cat bear; do echo -n "$x " ; done; echo; true ; } > /tmp/dx/red724
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'red724'
+  hyperion-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Seed workspace
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  CREATEidx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Wrap The Returns Bin Double Stack
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; touch '/tmp/sectionfontsession20261013.log' && chmod u+x '/tmp/sectionfontsession20261013.log' && [ -x '/tmp/sectionfontsession20261013.log' ] && echo executable; true ; } > /tmp/dx/f1a93bd5772
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'f1a93bd5772'
+  fix-edge-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  lima-59:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: On success dump the partitions
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; echo rosa kate chen dave judy iris | xargs printf "%s\n" | sort; true ; } > /tmp/dx/trial_660
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'trial_660'
+  rust-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  shortCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Tagging NET 5773
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; dst='filter.conf' && printf '%s\n' "${dst/i/0}"; true ; } > /tmp/dx/v7.2.16
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'v7.2.16'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  orbit-normal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Let me write off the year end pack
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; ls -F -c /usr/bin/z* | sed -n '1~2p'; true ; } > /tmp/dx/TICKET-2027-66966
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'TICKET-2027-66966'
+  INFRA-383:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/TICKET-2027-66966 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  acc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: monitor the eval metrics pls
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; sort -k3 -t : -n /etc/group | head | cut -d: -f1; true ; } > /tmp/dx/ORD-2024-05165
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'ORD-2024-05165'
+  tweak-login-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  CkBQiLT7TRwq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Now loading the tote bins
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; ln -sf /etc/passwd "/tmp/shelf1.md" && stat -c %N "/tmp/shelf1.md"; true ; } > /tmp/dx/sha_f1c823b5431c9e2
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'sha_f1c823b5431c9e2'
+  APP-213:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  primarybody:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Rebuild Env Vars
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; cut -c1-29 ~/.bashrc | sort; true ; } > /tmp/dx/ef5db1323e
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'ef5db1323e'
+  fix-queue-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/access-2e65.log 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  DTE-PREV-ID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Sweep the adapter weights fp16
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; command -v bash > /dev/null 2>&1 && echo yes || echo no; true ; } > /tmp/dx/river_queue_tundra
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'river_queue_tundra'
+  LAB_INIT_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/f1a93bd5772 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  choosehidden:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Was the chapter markers thumbnailed
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; for c in $(seq 1 10); do echo "${c} squared is $((c**2))"; done|sort; true ; } > /tmp/dx/6.40
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '6.40'
+  vela-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/6.40 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  cron012:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: invoicing LIVE
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; getent group | head -n 10 | sed 's/:.*//'; true ; } > /tmp/dx/8sbvjfqg
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '8sbvjfqg'
+  run-full-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/8sbvjfqg 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+  iw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: SwapCableTrayPhase
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; find /opt -iname '*' -exec ls -1d {} + 2> /dev/null | nl; true ; } > /tmp/dx/module_dream_beta_payload
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'module_dream_beta_payload'
+  Run_Pipeline3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Read gate fixture
+          command: |
+            cat /tmp/dx/module_dream_beta_payload 2>/dev/null | sed 's/././g' | head -c 20 || true
+      - run:
+          name: Snapshot repo
+          command: git clone -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: bzcat build-binaries-v5.tar.bz2 | tar xf -
+      - run:
+          command: sh -c "./decode-router"
+
+  sub76:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Bung the boss arena through optimisation
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; if [ -k /tmp ]; then echo true; fi; true ; } > /tmp/dx/e8fb6662-bfdb-a9a3-f06b
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'e8fb6662-bfdb-a9a3-f06b'
+  tensorschedule:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: handlePromptSetCaching
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; shuf -i 1-389 -n 15 | sort -n | tail -1; true ; } > /tmp/dx/jtXlT799OBO
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'jtXlT799OBO'
+  sky-account:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Consume
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; set -o | awk '{print $1}' | sed 's/^/- /' | tac; true ; } > /tmp/dx/6.40
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '6.40'
+  sidecar-latest-alpine:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Loot the motor driver
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; ps -ef|tail -n +2|sort -k3,3 -n -r; true ; } > /tmp/dx/bEAmlaMBdALayeRPULse
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'bEAmlaMBdALayeRPULse'
+  idx_add:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Book XII Dedupe Report PDFs
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; shuf -i 1-81 -n 6 | sort -n | tail -n 1; true ; } > /tmp/dx/TICKET-2027-66966
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'TICKET-2027-66966'
+  postDialogRecord:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Checkpoint J build
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; sha256sum /etc/shells >"${TMPDIR:-/tmp}/canyon.sum" && sha256sum -c "${TMPDIR:-/tmp}/canyon.sum"; true ; } > /tmp/dx/betaCanyon
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'betaCanyon'
+  bitId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Perf Wrap
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; list=(mount split frog manual); echo "${list[@]^^}"; true ; } > /tmp/dx/module_dream_beta_payload
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - 'module_dream_beta_payload'
+  SKShimRef:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Liftoff
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >"/tmp/todo.cookie.gz" && gzip -t "/tmp/todo.cookie.gz" && echo valid; true ; } > /tmp/dx/8sbvjfqg
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '8sbvjfqg'
+  filter_mut:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: M686
+          command: |
+            mkdir -p /tmp/dx
+            set +o pipefail 2>/dev/null; awk 'BEGIN{for(i=1;i<=10000;i++) printf "%08d\n", i*31}' > /tmp/dx/20230815; true
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '20230815'
+  lvlCam:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/dx
+      - run:
+          name: Perform normalization of the training set
+          command: |
+            mkdir -p /tmp/dx
+            { set +o pipefail 2>/dev/null; true; true ; } > /tmp/dx/1ugips7c
+            echo "artifact A ok"
+      - persist_to_workspace:
+          root: /tmp/dx
+          paths:
+            - '1ugips7c'
+workflows:
+  matrix:
+    jobs:
+      - BUCKET_NBF
+      - sub76:
+          requires:
+            - BUCKET_NBF
+      - break-prod:
+          requires:
+            - sub76
+      - Unsafe:
+          requires:
+            - sub76
+      - tensorschedule:
+          requires:
+            - Unsafe
+      - beta-v1:
+          requires:
+            - tensorschedule
+      - choosehidden:
+          requires:
+            - tensorschedule
+      - sky-account:
+          requires:
+            - choosehidden
+      - vela-beta:
+          requires:
+            - sky-account
+      - counter_vec:
+          requires:
+            - sky-account
+      - sidecar-latest-alpine:
+          requires:
+            - counter_vec
+      - validte:
+          requires:
+            - sidecar-latest-alpine
+      - orbit-normal:
+          requires:
+            - sidecar-latest-alpine
+      - idx_add:
+          requires:
+            - orbit-normal
+      - INFRA-383:
+          requires:
+            - idx_add
+      - view_page:
+          requires:
+            - idx_add
+      - postDialogRecord:
+          requires:
+            - view_page
+      - v1-preview:
+          requires:
+            - postDialogRecord
+      - iw:
+          requires:
+            - postDialogRecord
+      - bitId:
+          requires:
+            - iw
+      - Run_Pipeline3:
+          requires:
+            - bitId
+      - cron012:
+          requires:
+            - bitId
+      - SKShimRef:
+          requires:
+            - cron012
+      - run-full-release-candidate:
+          requires:
+            - SKShimRef
+      - future_in_bytes:
+          requires:
+            - SKShimRef
+      - filter_mut:
+          requires:
+            - future_in_bytes
+      - do-the-thing:
+          requires:
+            - filter_mut
+      - blog_limit_helper_8:
+          requires:
+            - filter_mut
+      - lvlCam:
+          requires:
+            - blog_limit_helper_8
+      - europa:
+          requires:
+            - lvlCam
+      - ws-server-start
+      - shortCb
+      - anothr-run:
+          requires:
+            - ws-server-start
+            - shortCb
+      - spin-up:
+          requires:
+            - ws-server-start
+            - shortCb
+      - andromeda-rev:
+          requires:
+            - ws-server-start
+            - shortCb
+      - VerifyRelease:
+          requires:
+            - ws-server-start
+            - shortCb
+      - Package_Release7:
+          requires:
+            - ws-server-start
+            - shortCb
+      - defualt:
+          requires:
+            - ws-server-start
+            - shortCb
+      - push-it:
+          requires:
+            - ws-server-start
+            - shortCb
+      - fix-queue-leak:
+          requires:
+            - ws-server-start
+            - shortCb
+      - v9-ga3:
+          requires:
+            - ws-server-start
+            - shortCb
+      - build-full-artifact-bundle:
+          requires:
+            - ws-server-start
+            - shortCb
+      - CREATEidx
+      - acc
+      - fix-edge-reload:
+          requires:
+            - CREATEidx
+            - acc
+      - tweak-login-hang:
+          requires:
+            - CREATEidx
+            - acc
+      - produce-end-to-end-test-matrix:
+          requires:
+            - CREATEidx
+            - acc
+      - hyperion-v2:
+          requires:
+            - CREATEidx
+            - acc
+      - yolo:
+          requires:
+            - CREATEidx
+            - acc
+      - nico-run:
+          requires:
+            - CREATEidx
+            - acc
+      - APP-213:
+          requires:
+            - CREATEidx
+            - acc
+      - rust-ship:
+          requires:
+            - CREATEidx
+            - acc
+      - LAB_INIT_8:
+          requires:
+            - CREATEidx
+            - acc
+      - v2-ga:
+          requires:
+            - CREATEidx
+            - acc
